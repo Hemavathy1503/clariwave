@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClariWave</title>
+    
+    <!-- Fonts - Optimized -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..800;1,14..32,300..800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">ClariWave</div>
+        <ul>
+            <li class="nav-item active-nav" data-section="home">Home</li>
+            <li class="nav-item" data-section="about">About</li>
+            <li class="nav-item" data-section="predict">Predict</li>
+            <li class="nav-item" data-section="analytics">Analytics</li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- HOME -->
+        <section id="home" class="section active">
+            <h1>Mental Wellness Analyzer</h1>
+            <p>Understand your mental state with ML-powered insights and personalized recommendations</p>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="section">
+            <h1>ClariWave</h1>
+            <p>This advanced system combines behavioral data, NLP analysis, and machine learning to predict mental wellness risk levels. Get instant insights and actionable recommendations.</p>
+        </section>
+
+        <!-- PREDICT -->
+        <section id="predict" class="section">
+            <div class="card">
+                <h2>Enter Your Details</h2>
+                
+                <!-- FIXED TEXTAREA - NO OVERLAP -->
+                <div class="input-group">
+                    <textarea 
+                        id="text" required
+                    ></textarea>
+                    <label>Your Thoughts</label>
+                    <small class="helper-text">
+        Share your thoughts, feelings, or what's on your mind today.
+        Example: "I've been feeling overwhelmed with school lately..."
+    </small>
+                </div>
+
+                <div class="grid">
+                    <div class="input-group">
+                        <input type="number" id="age" min="1" max="100" required>
+                        <label>Age</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="gpa" step="0.01" min="0" max="4.0" required>
+                        <label>GPA (0-4.0)</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="stress" min="1" max="5">
+                        <label>Stress Level (1-5)</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="anxiety" min="0" max="100">
+                        <label>Anxiety Level</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="depression" min="0" max="100">
+                        <label>Depression Level</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="sleep" min="0" max="24">
+                        <label>Sleep Hours (last night)</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="steps" min="0">
+                        <label>Daily Steps</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="number" id="sentiment" min="-1" max="1" step="0.01">
+                        <label>Sentiment Score (-1 to 1)</label>
+                    </div>
+                </div>
+
+                <!-- BIG ENHANCED SELECTS -->
+                <div class="grid-select">
+                    <div class="input-group enhanced-select">
+                        <select id="gender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="Male">👨 Male</option>
+                            <option value="Female">👩 Female</option>
+                            <option value="Other">✨ Other</option>
+                        </select>
+                        <label>Gender</label>
+                    </div>
+
+                    <div class="input-group enhanced-select">
+                        <select id="mood" required>
+                            <option value="" disabled selected>How are you feeling?</option>
+                            <option value="Happy">😊 Happy</option>
+                            <option value="Tired">😴 Tired</option>
+                            <option value="Sad">😢 Sad</option>
+                            <option value="Anxious">😰 Anxious</option>
+                            <option value="Motivated">💪 Motivated</option>
+                            <option value="Relaxed">😌 Relaxed</option>
+                            <option value="Stressed">😓 Stressed</option>
+                        </select>
+                        <label>Current Mood</label>
+                    </div>
+                </div>
+
+                <button onclick="predict()">🔮 Analyze My Mental State</button>
+
+                <!-- RESULT -->
+                <div class="result-box" id="resultBox" style="display: none;">
+                    <p id="prediction">Prediction: -</p>
+                    <p id="confidence">Confidence: -</p>
+                </div>
+            </div>
+        </section>
+        <section id="analytics" class="section">
+          <h1>Analytics</h1>
+
+          <div class="analytics-container">
+
+        <div class="analytics-card">
+            <h2>Confusion Matrix</h2>
+            <img src="/static/images/confusion_matrix.png" alt="Confusion Matrix">
+        </div>
+
+        <div class="analytics-card">
+            <h2>Feature Importance</h2>
+            <img src="/static/images/feature_importance.png" alt="Feature Importance">
+        </div>
+
+    </div>
+
+    <!-- Prediction summary -->
+    <div class="analytics-result" id="analyticsResult" style="display:none;">
+    <h2>Your Result</h2>
+
+    <p id="a_prediction"></p>
+    <p id="a_confidence"></p>
+
+    <!-- ✅ ADD THIS -->
+    <canvas id="userChart"></canvas>
+</div>
+</section>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
