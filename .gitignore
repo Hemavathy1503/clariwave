@@ -8,11 +8,9 @@ __pycache__/
 *.sqlite3
 
 # =========================
-# VIRTUAL ENV (YOUR CASE)
+# VIRTUAL ENV
 # =========================
 myenv/
-
-# (optional - keep generic too)
 venv/
 env/
 ENV/
@@ -20,7 +18,8 @@ ENV/
 # =========================
 # MODEL FILES
 # =========================
-model/
+model/*
+!model/*.py
 *.pkl
 *.joblib
 
